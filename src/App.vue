@@ -6,10 +6,12 @@
     <login-form :users="users" @login="logged_user = $event" @show_message="snackbar = $event" @login_message="snack_message = $event" @login_color="snack_color = $event"/>
     <sign-up-form @new_user="registerUser($event)" @show_message="snackbar = $event" @login_message="snack_message = $event" @login_color="snack_color = $event"/>
     <producto-detalle :watch="watches[0]" @add_to_cart="addToCart($event)"/>
+    <listado-productos :watches="watches" @add_to_cart="addToCart($event)"/>
   </v-app>
 </template>
 
 <script>
+import ListadoProductos from './components/ListadoProductos.vue';
 import LoginForm from './components/LoginForm.vue';
 import ProductoDetalle from './components/ProductoDetalle.vue';
 import SignUpForm from './components/SignUpForm.vue';
@@ -20,6 +22,7 @@ export default {
   name: 'App',
 
   components: {
+    ListadoProductos,
     LoginForm,
     SignUpForm,
     ProductoDetalle,
