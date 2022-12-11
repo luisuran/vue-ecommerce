@@ -1,0 +1,37 @@
+[
+  {
+    "id": 1,
+    "name": "venu sq 2",
+    "description": "Bisel de aluminio en color verde menta metálica con carcasa y correa de silicona en verde menta fresca",
+    "picture": "https://garmin.com.ar/Image/0/700_700-010-02701-1201.jpg",
+    "price": 90.999
+  },
+  {
+    "id": 2,
+    "name": "epix gen 2",
+    "description": "Zafiro: titanio blanco",
+    "picture": "https://garmin.com.ar/Image/0/700_700-TITANIOBLANCO.jpg",
+    "price": 418.999
+  },
+  {
+    "id": 3,
+    "name": "forerunner 255s",
+    "description": "Light Pink",
+    "picture": "https://garmin.com.ar/Image/0/700_700-fore255ssp01.jpg",
+    "price": 108.999
+  },
+  {
+    "id": 4,
+    "name": "instinct 2s surf",
+    "description": "Waikiki",
+    "picture": "https://garmin.com.ar/Image/0/700_700-16.jpg",
+    "price": 145.999
+  },
+  {
+    "id": 5,
+    "name": "approach s62 negro",
+    "description": "Bisel Negro con Malla Negra",
+    "picture": "https://garmin.com.ar/Image/0/700_700-010-02200-00_1.jpg",
+    "price": 172.999
+  }
+]
