@@ -2,7 +2,7 @@
  <v-card class="mx-auto my-auto" max-width="300">
     <v-img :src="watch.picture"></v-img>
     <v-layout justify-center>
-        <v-card-title class="text-center">{{tituloMayusculas}}</v-card-title>
+        <v-card-title class="text-center text-uppercase">{{watch.name}}</v-card-title>
     </v-layout>
     <v-card-text class="py-0">{{watch.description}}</v-card-text>
     <v-layout justify-center>
@@ -24,12 +24,6 @@ export default {
 
     props: {
         watch: Object,
-    },
-
-    computed: {
-        tituloMayusculas() {
-            return this.watch.name.toUpperCase();
-        },
     },
 
     methods: {
