@@ -7,10 +7,12 @@
     <sign-up-form @new_user="registerUser($event)" @show_message="snackbar = $event" @login_message="snack_message = $event" @login_color="snack_color = $event"/>
     <producto-detalle :watch="watches[0]" @add_to_cart="addToCart($event)"/>
     <listado-productos :watches="watches" @add_to_cart="addToCart($event)"/>
+    <carrito-compras :cart="cart" @delete_from_cart="deleteFromCart($event)"/>
   </v-app>
 </template>
 
 <script>
+import CarritoCompras from './components/CarritoCompras.vue';
 import ListadoProductos from './components/ListadoProductos.vue';
 import LoginForm from './components/LoginForm.vue';
 import ProductoDetalle from './components/ProductoDetalle.vue';
@@ -22,6 +24,7 @@ export default {
   name: 'App',
 
   components: {
+    CarritoCompras,
     ListadoProductos,
     LoginForm,
     SignUpForm,
@@ -60,6 +63,15 @@ export default {
         });
       } else {
         this.cart[index].quantity += 1;
+      }
+    },
+    deleteFromCart(event) {
+      const watch = this.cart.find(item => item.id === event);
+
+      if (watch.quantity > 1) {
+        watch.quantity -= 1;
+      } else {
+        this.cart.splice(this.cart.indexOf(watch), 1);
       }
     },
   },
