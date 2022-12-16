@@ -16,6 +16,8 @@
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
     name: 'SignUpForm',
     props: {},
@@ -75,14 +77,29 @@ export default {
                 return;
             }
             
-            this.$emit('new_user', {
+            const newUser = {
                 name: this.name,
                 email: this.email,
                 password: this.password,
-            });
-            this.$emit('show_message', true);
-            this.$emit('login_message', 'Registro exitoso');
-            this.$emit('login_color', 'success');
+            };
+
+            axios.post('https://639c6bf916d1763ab1494c7e.mockapi.io/api/users', newUser)
+                .then(() => {
+                    this.$emit('show_message', true);
+                    this.$emit('login_message', 'Registro exitoso');
+                    this.$emit('login_color', 'success');
+
+                    axios.get('https://639c6bf916d1763ab1494c7e.mockapi.io/api/users')
+                        .then(response => {
+                            this.$emit('users', response.data);
+                        })
+                        .catch(error => {
+                            console.log(error);
+                        });
+                })
+                .catch(error => {
+                    console.log(error);
+                });
         },
     },
 }
