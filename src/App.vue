@@ -1,5 +1,11 @@
 <template>
   <v-app>
+    <nav>
+      <router-link to="/">Home</router-link>
+      <router-link to="/about">About</router-link>
+    </nav>
+    <router-view />
+
     <v-snackbar v-model="snackbar" timeout=1500 :color="snack_color">
       {{ snack_message }}
     </v-snackbar>
