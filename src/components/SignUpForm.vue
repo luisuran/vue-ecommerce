@@ -7,6 +7,13 @@
                 <v-text-field v-model="email" label="Email" name="email" prepend-icon="mdi-email" type="email" :rules="rules_email"></v-text-field>
                 <v-text-field v-model="password" label="Password" name="password" prepend-icon="mdi-lock" type="password" :rules="rules_password"></v-text-field>
                 <v-text-field v-model="password2" label="Repetir Password" name="password2" prepend-icon="mdi-lock" type="password" :rules="rules_password"></v-text-field>
+                <v-layout>
+                    <v-checkbox
+                        v-model="isAdmin"
+                        label="¿Es administrador?"
+                        color="primary"
+                    ></v-checkbox>
+                </v-layout>
                 <v-layout justify-center my-3>
                     <v-btn color="primary" @click="signUp">Registrate</v-btn>
                 </v-layout>
@@ -26,6 +33,7 @@ export default {
         email: '',
         password: '',
         password2: '',
+        isAdmin: false,
         rules: [
             v => !!v || 'Campo requerido',
         ],
@@ -81,6 +89,7 @@ export default {
                 name: this.name,
                 email: this.email,
                 password: this.password,
+                isAdmin: this.isAdmin,
             };
 
             axios.post('https://639c6bf916d1763ab1494c7e.mockapi.io/api/users', newUser)
