@@ -8,7 +8,6 @@
 </template>
 
 <script>
-import axios from 'axios';
 import NavBar from '@/components/NavBar.vue';
 
 export default {
@@ -19,23 +18,12 @@ export default {
   },
 
   data: () => ({
-    watches: [],
     logged_user : null,
     snackbar: false,
     snack_message: "",
     snack_color: "",
     cart: [],
   }),
-
-  created() {
-    axios.get('http://dev-entropia2.cvmd.com.ar/api/products')
-      .then(response => {
-        this.watches = response.data;
-      })
-      .catch(error => {
-        console.log(error);
-      });
-  },
 
   methods: {
     addToCart(event) {
