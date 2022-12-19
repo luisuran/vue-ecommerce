@@ -1,14 +1,18 @@
 <template>
   <div class="home">
-    <h1>Home page</h1>
+    <nav-bar></nav-bar>
   </div>
 </template>
 
 <script>
+import NavBar from '@/components/NavBar.vue';
 
 export default {
   name: 'HomeView',
   components: {
-  }
+    NavBar
+  },
+  data: () => ({
+  }),
 }
 </script>

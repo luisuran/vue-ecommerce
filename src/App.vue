@@ -1,39 +1,16 @@
 <template>
   <v-app>
-    <nav>
-      <router-link to="/">Home</router-link>
-      <router-link to="/about">About</router-link>
-    </nav>
     <router-view />
-
-    <v-snackbar v-model="snackbar" timeout=1500 :color="snack_color">
-      {{ snack_message }}
-    </v-snackbar>
-    <login-form :users="users" @login="logged_user = $event" @show_message="snackbar = $event" @login_message="snack_message = $event" @login_color="snack_color = $event"/>
-    <sign-up-form @users="users = $event" @show_message="snackbar = $event" @login_message="snack_message = $event" @login_color="snack_color = $event"/>
-    <producto-detalle :watch="watches[0]" @add_to_cart="addToCart($event)"/>
-    <listado-productos :watches="watches" @add_to_cart="addToCart($event)"/>
-    <carrito-compras :cart="cart" @delete_from_cart="deleteFromCart($event)"/>
   </v-app>
 </template>
 
 <script>
 import axios from 'axios';
-import CarritoCompras from './components/CarritoCompras.vue';
-import ListadoProductos from './components/ListadoProductos.vue';
-import LoginForm from './components/LoginForm.vue';
-import ProductoDetalle from './components/ProductoDetalle.vue';
-import SignUpForm from './components/SignUpForm.vue';
 
 export default {
   name: 'App',
 
   components: {
-    CarritoCompras,
-    ListadoProductos,
-    LoginForm,
-    SignUpForm,
-    ProductoDetalle,
   },
 
   data: () => ({
