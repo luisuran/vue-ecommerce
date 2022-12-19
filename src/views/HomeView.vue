@@ -1,16 +1,20 @@
 <template>
   <div class="home">
-    <nav-bar></nav-bar>
+    <v-container>
+      <v-row>
+        <v-col cols="12">
+          <h1>Home</h1>
+        </v-col>
+      </v-row>
+    </v-container>
   </div>
 </template>
 
 <script>
-import NavBar from '@/components/NavBar.vue';
 
 export default {
   name: 'HomeView',
   components: {
-    NavBar
   },
   data: () => ({
   }),

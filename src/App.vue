@@ -1,20 +1,24 @@
 <template>
   <v-app>
-    <router-view />
+    <nav-bar></nav-bar>
+    <v-main>
+      <router-view />
+    </v-main>
   </v-app>
 </template>
 
 <script>
 import axios from 'axios';
+import NavBar from '@/components/NavBar.vue';
 
 export default {
   name: 'App',
 
   components: {
+    NavBar,
   },
 
   data: () => ({
-    users: [],
     watches: [],
     logged_user : null,
     snackbar: false,
@@ -24,14 +28,6 @@ export default {
   }),
 
   created() {
-    axios.get('http://dev-entropia2.cvmd.com.ar/api/users')
-      .then(response => {
-        this.users = response.data;
-      })
-      .catch(error => {
-        console.log(error);
-      });
-
     axios.get('http://dev-entropia2.cvmd.com.ar/api/products')
       .then(response => {
         this.watches = response.data;

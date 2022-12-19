@@ -1,5 +1,5 @@
 <template>
-    <v-app-bar color="primary">
+    <v-app-bar app color="primary">
       <v-toolbar-title class="white--text">Vue-commerce</v-toolbar-title>
       <v-spacer></v-spacer>
 
@@ -9,7 +9,7 @@
             Ingreso
           </v-btn>
         </template>
-        <login-form></login-form>
+        <login-form :users="users" @login="logged_in_user = $event"></login-form>
       </v-dialog>
 
       <v-dialog v-model="showSignUpForm" max-width="400px" v-if="logged_in_user == null">
@@ -67,12 +67,14 @@
 </template>
 
 <script>
+import axios from 'axios';
 import LoginForm from '@/components/LoginForm.vue';
 import SignUpForm from '@/components/SignUpForm.vue';
 
 export default {
     name: 'NavBar',
     data: () => ({
+        users: [],
         logged_in_user: null,
         showLoginForm: false,
         showSignUpForm: false,
@@ -80,6 +82,15 @@ export default {
     components: {
         LoginForm,
         SignUpForm,
+    },
+    created() {
+      axios.get('http://dev-entropia2.cvmd.com.ar/api/users')
+        .then(response => {
+          this.users = response.data;
+        })
+        .catch(error => {
+          console.log(error);
+        });
     },
     computed: {
         userInitials() {
