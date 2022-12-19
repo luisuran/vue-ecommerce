@@ -47,6 +47,7 @@
                 depressed
                 rounded
                 text
+                @click="$router.push('/carrito')"
               >
                 Mi carrito
               </v-btn>
