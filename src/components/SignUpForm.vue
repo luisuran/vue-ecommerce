@@ -92,13 +92,13 @@ export default {
                 isAdmin: this.isAdmin,
             };
 
-            axios.post('https://639c6bf916d1763ab1494c7e.mockapi.io/api/users', newUser)
+            axios.post('http://dev-entropia2.cvmd.com.ar/api/users', newUser)
                 .then(() => {
                     this.$emit('show_message', true);
                     this.$emit('login_message', 'Registro exitoso');
                     this.$emit('login_color', 'success');
 
-                    axios.get('https://639c6bf916d1763ab1494c7e.mockapi.io/api/users')
+                    axios.get('http://dev-entropia2.cvmd.com.ar/api/users')
                         .then(response => {
                             this.$emit('users', response.data);
                         })

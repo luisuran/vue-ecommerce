@@ -24,7 +24,6 @@ import ListadoProductos from './components/ListadoProductos.vue';
 import LoginForm from './components/LoginForm.vue';
 import ProductoDetalle from './components/ProductoDetalle.vue';
 import SignUpForm from './components/SignUpForm.vue';
-import watches from './assets/datos/watches.json';
 
 export default {
   name: 'App',
@@ -39,7 +38,7 @@ export default {
 
   data: () => ({
     users: [],
-    watches: watches,
+    watches: [],
     logged_user : null,
     snackbar: false,
     snack_message: "",
@@ -48,9 +47,17 @@ export default {
   }),
 
   created() {
-    axios.get('https://639c6bf916d1763ab1494c7e.mockapi.io/api/users')
+    axios.get('http://dev-entropia2.cvmd.com.ar/api/users')
       .then(response => {
         this.users = response.data;
+      })
+      .catch(error => {
+        console.log(error);
+      });
+
+    axios.get('http://dev-entropia2.cvmd.com.ar/api/products')
+      .then(response => {
+        this.watches = response.data;
       })
       .catch(error => {
         console.log(error);
