@@ -1,6 +1,7 @@
 <template>
     <v-app-bar app color="primary">
-      <v-toolbar-title class="white--text">Vue-commerce</v-toolbar-title>
+      <v-toolbar-title class="white--text" @click="$router.push('/')">Vue-commerce</v-toolbar-title>
+
       <v-spacer></v-spacer>
 
       <v-dialog v-model="showLoginForm" max-width="400px" v-if="logged_in_user == null">
