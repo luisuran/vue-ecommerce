@@ -14,11 +14,10 @@
 </template>
 
 <script>
+import { mapMutations } from 'vuex';
+
 export default {
     name: 'LoginForm',
-    props: {
-        users: Array,
-    },
     data: () => ({
         email: '',
         password: '',
@@ -28,6 +27,7 @@ export default {
     }),
 
     methods: {
+        ...mapMutations(['setLoggedUser']),
         login() {
             if (!this.email) {
                 this.$emit('show_message', true);
@@ -42,10 +42,10 @@ export default {
                 return;
             }
 
-            const user = this.users.find(user => user.email === this.email && user.password === this.password);
+            const user = this.$store.getters.getUserList.find(user => user.email === this.email && user.password === this.password);
 
             if (user) {
-                this.$emit('login', user);
+                this.setLoggedUser(user);   // Guardo el user logueado en el store
                 this.$emit('show_message', true);
                 this.$emit('login_message', 'Inicio exitoso');
                 this.$emit('login_color', 'success');

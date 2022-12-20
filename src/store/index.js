@@ -7,17 +7,23 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     logged_in_user: null,
-    users_store: [],
+    users: [],
   },
   getters: {
     getLoggedUser: state => {
       return state.logged_in_user;
+    },
+    getUserList: state => {
+      return state.users;
     }
   },
   mutations: {
+    setLoggedUser: (state, user) => {
+      state.logged_in_user = user;
+    },
     setUserList: (state, users) => {
-      state.users_store = users;
-    }
+      state.users = users;
+    },
   },
   actions: {
     getUserList: function() {
