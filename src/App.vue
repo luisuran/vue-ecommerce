@@ -8,6 +8,7 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex';
 import NavBar from '@/components/NavBar.vue';
 
 export default {
@@ -25,7 +26,12 @@ export default {
     cart: [],
   }),
 
+  created() {
+    this.getUserList();
+  },
+
   methods: {
+    ...mapActions(['getUserList']),
     addToCart(event) {
       const index = this.cart.findIndex(item => item.id === event.id);
       if (index === -1) {
