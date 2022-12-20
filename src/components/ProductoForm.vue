@@ -22,7 +22,7 @@ export default {
         name: '',
         description: '',
         picture: '',
-        price: 0,
+        price: '',
         rules: [
             (v) => !!v || 'Este campo es requerido',
         ],

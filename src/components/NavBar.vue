@@ -94,6 +94,12 @@ export default {
             this.$router.push('/');
         }
     },
+    watch: {
+        $route() {
+            this.showLoginForm = false;
+            this.showSignUpForm = false;
+        }
+    }
 }
 </script>
 
