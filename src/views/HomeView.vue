@@ -1,5 +1,6 @@
 <template>
   <div class="home">
+    <v-img src="/banner_ofertas.png" class="banner"></v-img>
     <v-container>
       <v-row>
         <v-col cols="12">
