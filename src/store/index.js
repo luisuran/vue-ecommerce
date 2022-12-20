@@ -8,6 +8,7 @@ export default new Vuex.Store({
   state: {
     logged_in_user: null,
     users: [],
+    products: [],
   },
   getters: {
     getLoggedUser: state => {
@@ -15,7 +16,10 @@ export default new Vuex.Store({
     },
     getUserList: state => {
       return state.users;
-    }
+    },
+    getProductList: state => {
+      return state.products;
+    },
   },
   mutations: {
     setLoggedUser: (state, user) => {
@@ -23,6 +27,9 @@ export default new Vuex.Store({
     },
     setUserList: (state, users) => {
       state.users = users;
+    },
+    setProductList: (state, products) => {
+      state.products = products;
     },
   },
   actions: {
@@ -34,7 +41,16 @@ export default new Vuex.Store({
       .catch(error => {
         console.log(error);
       });
-    } 
+    },
+    getProductList: function() {
+      axios.get('http://dev-entropia2.cvmd.com.ar/api/products')
+      .then(response => {
+        this.commit('setProductList', response.data)
+      })
+      .catch(error => {
+        console.log(error);
+      });
+    },
   },
   modules: {
   }

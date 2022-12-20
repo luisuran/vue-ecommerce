@@ -28,10 +28,11 @@ export default {
 
   created() {
     this.getUserList();
+    this.getProductList();
   },
 
   methods: {
-    ...mapActions(['getUserList']),
+    ...mapActions(['getUserList', 'getProductList']),
     addToCart(event) {
       const index = this.cart.findIndex(item => item.id === event.id);
       if (index === -1) {
