@@ -8,7 +8,7 @@
     <v-layout justify-center>
         <v-card-subtitle class="text-subtitle-2">${{watch.price}}</v-card-subtitle>
     </v-layout>
-    <v-layout justify-center>
+    <v-layout justify-center v-if="this.$store.getters.getLoggedUser">
         <v-btn color="primary" class="mb-3" @click="addToCart()">Agregar al carrito</v-btn>
     </v-layout>
  </v-card> 
