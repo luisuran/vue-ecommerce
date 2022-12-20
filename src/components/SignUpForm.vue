@@ -24,6 +24,7 @@
 
 <script>
 import axios from 'axios';
+import { mapMutations, mapActions } from 'vuex';
 
 export default {
     name: 'SignUpForm',
@@ -47,6 +48,8 @@ export default {
         ]
     }),
     methods: {
+        ...mapMutations(['setLoggedUser']),
+        ...mapActions(['getUserList']),
         signUp() {
             if (!this.name) {
                 this.$emit('show_message', true);
@@ -93,18 +96,18 @@ export default {
             };
 
             axios.post('http://dev-entropia2.cvmd.com.ar/api/users', newUser)
-                .then(() => {
-                    this.$emit('show_message', true);
-                    this.$emit('login_message', 'Registro exitoso');
-                    this.$emit('login_color', 'success');
-
-                    axios.get('http://dev-entropia2.cvmd.com.ar/api/users')
-                        .then(response => {
-                            this.$emit('users', response.data);
-                        })
-                        .catch(error => {
-                            console.log(error);
-                        });
+                .then(response => {
+                    this.setLoggedUser(response.data);
+                    this.getUserList();
+                    
+                    if (response.data.isAdmin) {
+                        this.$router.push('/admin');
+                    } else {
+                        this.$router.push('/user');
+                    }
+                    //this.$emit('show_message', true);
+                    //this.$emit('login_message', 'Registro exitoso');
+                    //this.$emit('login_color', 'success');
                 })
                 .catch(error => {
                     console.log(error);

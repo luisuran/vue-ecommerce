@@ -46,13 +46,19 @@ export default {
 
             if (user) {
                 this.setLoggedUser(user);   // Guardo el user logueado en el store
-                this.$emit('show_message', true);
-                this.$emit('login_message', 'Inicio exitoso');
-                this.$emit('login_color', 'success');
+
+                if (user.isAdmin) {
+                    this.$router.push('/admin');
+                } else {
+                    this.$router.push('/user');
+                }
+                //this.$emit('show_message', true);
+                //this.$emit('login_message', 'Inicio exitoso');
+                //this.$emit('login_color', 'success');
             } else {
-                this.$emit('show_message', true);
-                this.$emit('login_message', 'Vuelva a intentarlo');
-                this.$emit('login_color', 'error');
+                //this.$emit('show_message', true);
+                //this.$emit('login_message', 'Vuelva a intentarlo');
+                //this.$emit('login_color', 'error');
             }
         },
     },
