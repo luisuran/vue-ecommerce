@@ -91,6 +91,7 @@ export default {
         ...mapMutations(['setLoggedUser']),
         signOut() {
             this.setLoggedUser(null);
+            this.$router.push('/');
         }
     },
 }
