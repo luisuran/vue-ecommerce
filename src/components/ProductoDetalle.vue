@@ -70,7 +70,6 @@ export default {
                 })
                     .then(() => {
                         this.getUserList();
-                        this.$emit('add_to_cart', this.watch);
                     })
                     .catch((err) => {
                         console.log(err);
@@ -84,7 +83,6 @@ export default {
                 })
                     .then(() => {
                         this.getUserList();
-                        this.$emit('add_to_cart', this.watch);
                     })
                     .catch((err) => {
                         console.log(err);

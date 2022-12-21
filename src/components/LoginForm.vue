@@ -30,15 +30,9 @@ export default {
         ...mapMutations(['setLoggedUser']),
         login() {
             if (!this.email) {
-                this.$emit('show_message', true);
-                this.$emit('login_message', 'El email es requerido');
-                this.$emit('login_color', 'error');
                 return;
             }
             if (!this.password) {
-                this.$emit('show_message', true);
-                this.$emit('login_message', 'El password es requerido');
-                this.$emit('login_color', 'error');
                 return;
             }
 
@@ -52,13 +46,8 @@ export default {
                 } else {
                     this.$router.push('/home');
                 }
-                //this.$emit('show_message', true);
-                //this.$emit('login_message', 'Inicio exitoso');
-                //this.$emit('login_color', 'success');
             } else {
-                //this.$emit('show_message', true);
-                //this.$emit('login_message', 'Vuelva a intentarlo');
-                //this.$emit('login_color', 'error');
+                return
             }
         },
     },

@@ -52,39 +52,21 @@ export default {
         ...mapActions(['getUserList']),
         signUp() {
             if (!this.name) {
-                this.$emit('show_message', true);
-                this.$emit('login_message', 'El nombre es requerido');
-                this.$emit('login_color', 'error');
                 return;
             }
             if (!this.email) {
-                this.$emit('show_message', true);
-                this.$emit('login_message', 'El email es requerido');
-                this.$emit('login_color', 'error');
                 return;
             }
             if (!/.+@.+\..+/.test(this.email)) {
-                this.$emit('show_message', true);
-                this.$emit('login_message', 'El email es inválido');
-                this.$emit('login_color', 'error');
                 return;
             }
             if (!this.password) {
-                this.$emit('show_message', true);
-                this.$emit('login_message', 'El password es requerido');
-                this.$emit('login_color', 'error');
                 return;
             }
             if (!this.password2) {
-                this.$emit('show_message', true);
-                this.$emit('login_message', 'El password es requerido');
-                this.$emit('login_color', 'error');
                 return;
             }
             if (this.password !== this.password2) {
-                this.$emit('show_message', true);
-                this.$emit('login_message', 'Los passwords no coinciden');
-                this.$emit('login_color', 'error');
                 return;
             }
             
@@ -105,9 +87,6 @@ export default {
                     } else {
                         this.$router.push('/user');
                     }
-                    //this.$emit('show_message', true);
-                    //this.$emit('login_message', 'Registro exitoso');
-                    //this.$emit('login_color', 'success');
                 })
                 .catch(error => {
                     console.log(error);
