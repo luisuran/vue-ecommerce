@@ -28,7 +28,7 @@ export default {
         ],
     }),
     methods: {
-        ...mapActions(['getProductList']),
+        ...mapActions(['getProductList', 'setSnackbar', 'setSnackbarText', 'setSnackbarColor']),
         addProduct() {
             axios.post('http://dev-entropia2.cvmd.com.ar/api/products', {
                 name: this.name,
@@ -39,8 +39,16 @@ export default {
                 .then(() => {
                     this.getProductList();
                     this.$router.go(-1);
+
+                    this.setSnackbar(true);
+                    this.setSnackbarText('Producto agregado exitosamente');
+                    this.setSnackbarColor('success');
                 })
                 .catch((error) => {
+                    this.setSnackbar(true);
+                    this.setSnackbarText('Error al agregar el producto');
+                    this.setSnackbarColor('error');
+
                     console.log(error);
                 });
         },
