@@ -48,25 +48,49 @@ export default {
         ]
     }),
     methods: {
-        ...mapMutations(['setLoggedUser']),
+        ...mapMutations(['setLoggedUser', 'setSnackbar', 'setSnackbarText', 'setSnackbarColor']),
         ...mapActions(['getUserList']),
         signUp() {
             if (!this.name) {
+                this.setSnackbar(true);
+                this.setSnackbarText('El nombre es requerido');
+                this.setSnackbarColor('error');
+
                 return;
             }
             if (!this.email) {
+                this.setSnackbar(true);
+                this.setSnackbarText('El email es requerido');
+                this.setSnackbarColor('error');
+
                 return;
             }
             if (!/.+@.+\..+/.test(this.email)) {
+                this.setSnackbar(true);
+                this.setSnackbarText('El email es inválido');
+                this.setSnackbarColor('error');
+
                 return;
             }
             if (!this.password) {
+                this.setSnackbar(true);
+                this.setSnackbarText('El password es requerido');
+                this.setSnackbarColor('error');
+
                 return;
             }
             if (!this.password2) {
+                this.setSnackbar(true);
+                this.setSnackbarText('El password es requerido');
+                this.setSnackbarColor('error');
+
                 return;
             }
             if (this.password !== this.password2) {
+                this.setSnackbar(true);
+                this.setSnackbarText('Los passwords no coinciden');
+                this.setSnackbarColor('error');
+
                 return;
             }
             
@@ -87,15 +111,19 @@ export default {
                     } else {
                         this.$router.push('/user');
                     }
+
+                    this.setSnackbar(true);
+                    this.setSnackbarText(`Bienvenido ${response.data.name}`);
+                    this.setSnackbarColor('success');
                 })
                 .catch(error => {
+                    this.setSnackbar(true);
+                    this.setSnackbarText('Ocurrió un error al registrarse');
+                    this.setSnackbarColor('error');
+
                     console.log(error);
                 });
         },
     },
 }
 </script>
-
-<style>
-
-</style>
