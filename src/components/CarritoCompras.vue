@@ -26,12 +26,12 @@
                 <tr v-else v-for="watch in cart" :key="watch.id">
                     <td class="d-flex align-center">
                         <div class="d-flex align-center justify-center">
-                            <img :src="getProduct(watch.id).picture" alt="" height="45">
-                            <span class="text-capitalize">{{ getProduct(watch.id).name }}</span>
+                            <img :src="getProduct(watch.product_id).picture" alt="" height="45">
+                            <span class="text-capitalize">{{ getProduct(watch.product_id).name }}</span>
                         </div>
                     </td>
                     <td>{{ watch.cantidad }}</td>
-                    <td>{{ getProduct(watch.id).price }}</td>
+                    <td>{{ getProduct(watch.product_id).price }}</td>
                     <td>
                         <v-btn icon @click="deleteFromCart(watch.id)">
                             <v-icon>mdi-delete</v-icon>
@@ -44,6 +44,8 @@
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
     name: 'CarritoCompras',
 
@@ -56,7 +58,13 @@ export default {
             return this.$store.getters.getProductList.find(product => product.id === id);
         },
         deleteFromCart(id) {
-            this.$emit('delete_from_cart', id);
+            axios.delete(`http://dev-entropia2.cvmd.com.ar/api/cart/${id}`)
+                .then(() => {
+                    this.$router.go(-1);
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
         }
     },
 }

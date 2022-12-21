@@ -56,9 +56,40 @@ export default {
     },
 
     methods: {
-        ...mapActions(['getProductList']),
+        ...mapActions(['getProductList', 'getUserList']),
         addToCart() {
-            this.$emit('add_to_cart', this.watch);
+            const product_id = this.watch.id;
+            const user_id = this.$store.getters.getLoggedUser.id;
+            const cart = this.$store.getters.getCart;
+
+            const product_cart = cart.find((product) => product.product_id === product_id && product.user_id === user_id);
+
+            if (product_cart) {
+                axios.put(`http://dev-entropia2.cvmd.com.ar/api/cart/${product_cart.id}`, {
+                    cantidad: product_cart.cantidad + 1,
+                })
+                    .then(() => {
+                        this.getUserList();
+                        this.$emit('add_to_cart', this.watch);
+                    })
+                    .catch((err) => {
+                        console.log(err);
+                    });
+                return;
+            } else {
+                axios.post(`http://dev-entropia2.cvmd.com.ar/api/cart`, {
+                    product_id: this.watch.id,
+                    user_id: this.$store.getters.getLoggedUser.id,
+                    cantidad: 1,
+                })
+                    .then(() => {
+                        this.getUserList();
+                        this.$emit('add_to_cart', this.watch);
+                    })
+                    .catch((err) => {
+                        console.log(err);
+                    });
+            }
         },
         editProduct(id) {
             this.$router.push(`/admin/product/${id}`)
