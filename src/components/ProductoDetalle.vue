@@ -41,7 +41,7 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex';
+import { mapActions, mapMutations } from 'vuex';
 import axios from 'axios';
 
 export default {
@@ -57,6 +57,7 @@ export default {
 
     methods: {
         ...mapActions(['getProductList', 'getUserList']),
+        ...mapMutations(['setSnackbar', 'setSnackbarColor', 'setSnackbarText']),
         addToCart() {
             const product_id = this.watch.id;
             const user_id = this.$store.getters.getLoggedUser.id;
@@ -88,6 +89,10 @@ export default {
                         console.log(err);
                     });
             }
+
+            this.setSnackbar(true);
+            this.setSnackbarColor('success');
+            this.setSnackbarText('Producto agregado al carrito');
         },
         editProduct(id) {
             this.$router.push(`/admin/product/${id}`)

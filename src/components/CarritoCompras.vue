@@ -45,6 +45,7 @@
 
 <script>
 import axios from 'axios';
+import { mapMutations } from 'vuex';
 
 export default {
     name: 'CarritoCompras',
@@ -54,6 +55,7 @@ export default {
     },
 
     methods: {
+        ...mapMutations(['setSnackbar', 'setSnackbarColor', 'setSnackbarText']),
         getProduct(id) {
             return this.$store.getters.getProductList.find(product => product.id === id);
         },
@@ -61,8 +63,16 @@ export default {
             axios.delete(`http://dev-entropia2.cvmd.com.ar/api/cart/${id}`)
                 .then(() => {
                     this.$router.go(-1);
+
+                    this.setSnackbar(true);
+                    this.setSnackbarColor('success');
+                    this.setSnackbarText('Producto eliminado del carrito');
                 })
                 .catch((error) => {
+                    this.setSnackbar(true);
+                    this.setSnackbarColor('error');
+                    this.setSnackbarText('Error al eliminar el producto del carrito');
+
                     console.log(error);
                 });
         }
