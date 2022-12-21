@@ -19,11 +19,6 @@ export default {
   },
 
   data: () => ({
-    logged_user : null,
-    snackbar: false,
-    snack_message: "",
-    snack_color: "",
-    cart: [],
   }),
 
   created() {
@@ -33,29 +28,6 @@ export default {
 
   methods: {
     ...mapActions(['getUserList', 'getProductList']),
-    addToCart(event) {
-      const index = this.cart.findIndex(item => item.id === event.id);
-      if (index === -1) {
-        this.cart.push({
-          id: event.id,
-          name: event.name,
-          price: event.price,
-          picture: event.picture,
-          quantity: 1,
-        });
-      } else {
-        this.cart[index].quantity += 1;
-      }
-    },
-    deleteFromCart(event) {
-      const watch = this.cart.find(item => item.id === event);
-
-      if (watch.quantity > 1) {
-        watch.quantity -= 1;
-      } else {
-        this.cart.splice(this.cart.indexOf(watch), 1);
-      }
-    },
   },
 };
 </script>
