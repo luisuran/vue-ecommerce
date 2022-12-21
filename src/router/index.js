@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import HomeView from '../views/HomeView.vue'
+//import store from '../store/index.js'
 
 Vue.use(VueRouter)
 
@@ -45,5 +46,17 @@ const routes = [
 const router = new VueRouter({
   routes
 })
+
+// Redirección a home si no está logueado
+/*
+router.beforeEach((to, from, next) => {
+  console.log(store.state.getLoggedUser);
+  if (to.path !== '/' && !store.state.getLoggedUser) {
+    next({ path: '/' })
+  } else {
+    next()
+  }
+})
+*/
 
 export default router
