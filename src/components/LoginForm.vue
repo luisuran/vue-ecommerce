@@ -27,12 +27,20 @@ export default {
     }),
 
     methods: {
-        ...mapMutations(['setLoggedUser']),
+        ...mapMutations(['setLoggedUser', 'setSnackbar', 'setSnackbarText', 'setSnackbarColor']),
         login() {
             if (!this.email) {
+                this.setSnackbar(true);
+                this.setSnackbarText('Debe ingresar un email');
+                this.setSnackbarColor('error');
+
                 return;
             }
             if (!this.password) {
+                this.setSnackbar(true);
+                this.setSnackbarText('Debe ingresar una contraseña');
+                this.setSnackbarColor('error');
+
                 return;
             }
 
@@ -46,6 +54,10 @@ export default {
                 } else {
                     this.$router.push('/home');
                 }
+
+                this.setSnackbar(true);
+                this.setSnackbarText(`Bienvenido ${user.name}`);
+                this.setSnackbarColor('success');
             } else {
                 return
             }

@@ -4,11 +4,27 @@
     <v-main>
       <router-view />
     </v-main>
+    <v-snackbar
+      v-model="this.$store.getters.getSnackbar"
+      color="this.$store.getters.getSnackbarColor"
+    >
+      {{ this.$store.getters.getSnackbarText }}
+
+      <template v-slot:action="{ attrs }">
+        <v-btn
+          icon
+          v-bind="attrs"
+          @click="closeSnackbar"
+        >
+          <v-icon>mdi-close</v-icon>
+        </v-btn>
+      </template>
+    </v-snackbar>
   </v-app>
 </template>
 
 <script>
-import { mapActions } from 'vuex';
+import { mapActions, mapMutations } from 'vuex';
 import NavBar from '@/components/NavBar.vue';
 
 export default {
@@ -28,6 +44,12 @@ export default {
 
   methods: {
     ...mapActions(['getUserList', 'getProductList']),
+    ...mapMutations(['setSnackbar', 'setSnackbarText', 'setSnackbarColor']),
+    closeSnackbar() {
+      this.setSnackbar(false);
+      this.setSnackbarText('');
+      this.setSnackbarColor('');
+    },
   },
 };
 </script>

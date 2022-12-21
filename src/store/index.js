@@ -9,6 +9,9 @@ export default new Vuex.Store({
     logged_in_user: null,
     users: [],
     products: [],
+    snackbar: false,
+    snackbar_color: '',
+    snackbar_text: '',
   },
   getters: {
     getLoggedUser: state => {
@@ -23,6 +26,15 @@ export default new Vuex.Store({
     getCart: state => {
       return state.logged_in_user.cart;
     },
+    getSnackbar: state => {
+      return state.snackbar;
+    },
+    getSnackbarColor: state => {
+      return state.snackbar_color;
+    },
+    getSnackbarText: state => {
+      return state.snackbar_text;
+    },
   },
   mutations: {
     setLoggedUser: (state, user) => {
@@ -33,6 +45,15 @@ export default new Vuex.Store({
     },
     setProductList: (state, products) => {
       state.products = products;
+    },
+    setSnackbar: (state, open) => {
+      state.snackbar = open;
+    },
+    setSnackbarColor: (state, color) => {
+      state.snackbar_color = color;
+    },
+    setSnackbarText: (state, text) => {
+      state.snackbar_text = text;
     },
   },
   actions: {
