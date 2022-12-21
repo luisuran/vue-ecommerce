@@ -1,6 +1,6 @@
 <template>
     <v-app-bar app color="primary">
-      <v-toolbar-title class="white--text pointer" @click="$router.push('/')">Vue-commerce</v-toolbar-title>
+      <v-toolbar-title class="white--text pointer" @click="redirectHome()">Vue-commerce</v-toolbar-title>
 
       <v-spacer></v-spacer>
 
@@ -94,6 +94,17 @@ export default {
         signOut() {
             this.setLoggedUser(null);
             this.$router.push('/');
+        },
+        redirectHome() {
+            if (!this.$store.getters.getLoggedUser) {
+                this.$router.push('/');
+            } else {
+                if (this.$store.getters.getLoggedUser.isAdmin) {
+                    this.$router.push('/admin');
+                } else {
+                    this.$router.push('/home');
+                }
+            }
         }
     },
     watch: {

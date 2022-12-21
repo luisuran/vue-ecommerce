@@ -50,7 +50,7 @@ export default {
                 if (user.isAdmin) {
                     this.$router.push('/admin');
                 } else {
-                    this.$router.push('/user');
+                    this.$router.push('/home');
                 }
                 //this.$emit('show_message', true);
                 //this.$emit('login_message', 'Inicio exitoso');
