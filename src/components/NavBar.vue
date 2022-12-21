@@ -41,15 +41,17 @@
               <p class="text-caption mt-1">
                 {{ this.$store.getters.getLoggedUser.email }}
               </p>
-              <v-divider class="my-3"></v-divider>
-              <v-btn
-                depressed
-                rounded
-                text
-                @click="$router.push('/carrito')"
-              >
-                Mi carrito
-              </v-btn>
+              <div v-if="!this.$store.getters.getLoggedUser.isAdmin">
+                <v-divider class="my-3"></v-divider>
+                <v-btn
+                  depressed
+                  rounded
+                  text
+                  @click="$router.push('/carrito')"
+                >
+                  Mi carrito
+                </v-btn>
+              </div>
               <v-divider class="my-3"></v-divider>
               <v-btn
                 depressed

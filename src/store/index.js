@@ -20,6 +20,9 @@ export default new Vuex.Store({
     getProductList: state => {
       return state.products;
     },
+    getCart: state => {
+      return state.logged_in_user.cart;
+    },
   },
   mutations: {
     setLoggedUser: (state, user) => {

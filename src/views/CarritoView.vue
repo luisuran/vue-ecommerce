@@ -6,8 +6,30 @@
           <v-layout justify-center>
             <h2 class="grey--text">Carrito de compras</h2>
           </v-layout>
+          <v-layout justify-center>
+            <carrito-compras :cart="this.$store.getters.getCart"></carrito-compras>
+          </v-layout>
         </v-col>
       </v-row>
     </v-container>
   </div>
 </template>
+
+<script>
+import CarritoCompras from '@/components/CarritoCompras.vue';
+
+export default {
+  name: 'CarritoView',
+  components: {
+    CarritoCompras,
+  },
+  data() {
+    return {
+      //
+    };
+  },
+  methods: {
+    //
+  },
+}
+</script>
