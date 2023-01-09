@@ -2,7 +2,7 @@
     <v-container>
         <v-layout row wrap>
             <v-flex xs12 md6 lg4 v-for="watch in watches" :key="watch.id" class="d-flex child-flex" cols="3">
-                <producto-detalle :watch="watch" />
+                <item-producto talle :watch="watch" />
             </v-flex>
             <v-layout justify-center v-if="this.$store.getters.getLoggedUser && this.$store.getters.getLoggedUser.isAdmin">
                 <v-icon x-large @click="addProduct">mdi-plus</v-icon>
@@ -12,13 +12,13 @@
 </template>
 
 <script>
-import ProductoDetalle from './ProductoDetalle.vue';
+import ItemProducto from './ItemProducto.vue';
 
 export default {
     name: 'ListadoProductos',
 
     components: {
-        ProductoDetalle,
+        ItemProducto,
     },
 
     props: {

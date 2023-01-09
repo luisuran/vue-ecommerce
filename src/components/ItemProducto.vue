@@ -45,7 +45,7 @@ import { mapActions, mapMutations } from 'vuex';
 import axios from 'axios';
 
 export default {
-    name: 'ProductoDetalle',
+    name: 'ItemProducto',
 
     data: () => ({
         dialog: false,
