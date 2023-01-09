@@ -1,5 +1,11 @@
 <template>
-    <v-card class="mx-auto my-2" max-width="300">
+    <v-card 
+        class="mx-auto my-2 elevation-5" 
+        max-width="300" 
+        @mouseenter="addElevation"
+        @mouseleave="removeElevation"
+        @click="$router.push(`/product/${watch.id}`)"
+    >
         <v-img :src="watch.picture"></v-img>
         <v-layout justify-center>
             <v-card-title class="text-center text-uppercase">{{ watch.name }}</v-card-title>
@@ -107,6 +113,14 @@ export default {
                 });
 
             this.dialog = false;
+        },
+        addElevation(e) {
+                e.target.classList.remove("elevation-5");
+                e.target.classList.add("elevation-20");
+        },
+        removeElevation(e) {
+                e.target.classList.remove("elevation-20");
+                e.target.classList.add("elevation-5");
         },
     },
 }
