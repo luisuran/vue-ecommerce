@@ -22,49 +22,55 @@
         <sign-up-form></sign-up-form>
       </v-dialog>
 
-    <v-menu bottom min-width="200px" rounded offset-y v-if="this.$store.getters.getLoggedUser">
-        <template v-slot:activator="{ on, attrs }">
-            <v-avatar color="orange darken-3" size="40" class="mr-2 white--text" v-bind="attrs" v-on="on">
-                <span class="white--text text-h5">{{ userInitials }}</span> 
-            </v-avatar>
-        </template>
+      <v-avatar v-if="this.$store.getters.getLoggedUser" @click="$router.push('/carrito')" class="mx-1">
+        <v-btn icon @click="showMenu = !showMenu">
+          <v-icon>mdi-cart</v-icon>
+        </v-btn>
+      </v-avatar>
 
-        <v-card>
-          <v-list-item-content class="justify-center">
-            <div class="mx-auto text-center">
-              <v-avatar
-                color="orange darken-3"
-              >
-                <span class="white--text text-h5">{{ userInitials }}</span>
+      <v-menu bottom min-width="200px" rounded offset-y v-if="this.$store.getters.getLoggedUser">
+          <template v-slot:activator="{ on, attrs }">
+              <v-avatar color="orange darken-3" size="40" class="mr-2 white--text" v-bind="attrs" v-on="on">
+                  <span class="white--text text-h5">{{ userInitials }}</span> 
               </v-avatar>
-              <h3>{{ this.$store.getters.getLoggedUser.name }}</h3>
-              <p class="text-caption mt-1">
-                {{ this.$store.getters.getLoggedUser.email }}
-              </p>
-              <div v-if="!this.$store.getters.getLoggedUser.isAdmin">
+          </template>
+
+          <v-card>
+            <v-list-item-content class="justify-center">
+              <div class="mx-auto text-center">
+                <v-avatar
+                  color="orange darken-3"
+                >
+                  <span class="white--text text-h5">{{ userInitials }}</span>
+                </v-avatar>
+                <h3>{{ this.$store.getters.getLoggedUser.name }}</h3>
+                <p class="text-caption mt-1">
+                  {{ this.$store.getters.getLoggedUser.email }}
+                </p>
+                <div v-if="!this.$store.getters.getLoggedUser.isAdmin">
+                  <v-divider class="my-3"></v-divider>
+                  <v-btn
+                    depressed
+                    rounded
+                    text
+                    @click="$router.push('/carrito')"
+                  >
+                    Mi carrito
+                  </v-btn>
+                </div>
                 <v-divider class="my-3"></v-divider>
                 <v-btn
                   depressed
                   rounded
                   text
-                  @click="$router.push('/carrito')"
+                  @click="signOut"
                 >
-                  Mi carrito
+                  Cerrar sesión
                 </v-btn>
               </div>
-              <v-divider class="my-3"></v-divider>
-              <v-btn
-                depressed
-                rounded
-                text
-                @click="signOut"
-              >
-                Cerrar sesión
-              </v-btn>
-            </div>
-          </v-list-item-content>
-        </v-card>
-    </v-menu>
+            </v-list-item-content>
+          </v-card>
+      </v-menu>
 
     </v-app-bar>
 </template>
