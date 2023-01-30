@@ -23,17 +23,17 @@
                         No hay productos en el carrito
                     </td>
                 </tr>
-                <tr v-else v-for="watch in cart" :key="watch.id">
+                <tr v-else v-for="product in cart" :key="product.id">
                     <td class="d-flex align-center">
                         <div class="d-flex align-center justify-center">
-                            <img :src="getProduct(watch.product_id).picture" alt="" height="45">
-                            <span class="text-capitalize">{{ getProduct(watch.product_id).name }}</span>
+                            <img :src="product.picture" alt="" height="45">
+                            <span class="text-capitalize">{{ product.name }}</span>
                         </div>
                     </td>
-                    <td>{{ watch.cantidad }}</td>
-                    <td>{{ getProduct(watch.product_id).price }}</td>
+                    <td>{{ product.cantidad }}</td>
+                    <td>{{ product.price }}</td>
                     <td>
-                        <v-btn icon @click="deleteFromCart(watch.id)">
+                        <v-btn icon @click="deleteFromCart(product.id)">
                             <v-icon>mdi-delete</v-icon>
                         </v-btn>
                     </td>
@@ -44,7 +44,6 @@
 </template>
 
 <script>
-import axios from 'axios';
 import { mapMutations } from 'vuex';
 
 export default {
@@ -55,26 +54,15 @@ export default {
     },
 
     methods: {
-        ...mapMutations(['setSnackbar', 'setSnackbarColor', 'setSnackbarText']),
-        getProduct(id) {
-            return this.$store.getters.getProductList.find(product => product.id === id);
-        },
+        ...mapMutations(['setSnackbar', 'setSnackbarColor', 'setSnackbarText', 'removeFromCart']),
         deleteFromCart(id) {
-            axios.delete(`http://dev-entropia2.cvmd.com.ar/api/cart/${id}`)
-                .then(() => {
-                    this.$router.go(-1);
+            const product = this.cart.find(product => product.id === id);
 
-                    this.setSnackbar(true);
-                    this.setSnackbarColor('success');
-                    this.setSnackbarText('Producto eliminado del carrito');
-                })
-                .catch((error) => {
-                    this.setSnackbar(true);
-                    this.setSnackbarColor('error');
-                    this.setSnackbarText('Error al eliminar el producto del carrito');
+            this.removeFromCart(product);
 
-                    console.log(error);
-                });
+            this.setSnackbar(true);
+            this.setSnackbarColor('success');
+            this.setSnackbarText('Producto eliminado del carrito');
         }
     },
 }

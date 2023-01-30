@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import axios from 'axios';
+import { mapActions } from 'vuex';
 import CarritoCompras from '@/components/CarritoCompras.vue';
 
 export default {
@@ -30,14 +30,10 @@ export default {
     };
   },
   created() {
-    axios.get('http://dev-entropia2.cvmd.com.ar/api/cart')
-      .then((response) => {
-        this.cart = response.data.filter(product => product.user_id === this.$store.getters.getLoggedUser.id)
-      })
-      .catch((err) => {
-        console.log("No se pudo obtener el carrito de compras");
-        console.log(err);
-      });
+    this.cart = this.$store.getters.getCart;
+  },
+  methods: {
+    ...mapActions(['getUserList', 'getProductList']),
   },
 }
 </script>

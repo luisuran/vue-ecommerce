@@ -12,6 +12,7 @@ export default new Vuex.Store({
     snackbar: false,
     snackbar_color: '',
     snackbar_text: '',
+    cart: [],
   },
   getters: {
     getLoggedUser: state => {
@@ -24,7 +25,7 @@ export default new Vuex.Store({
       return state.products;
     },
     getCart: state => {
-      return state.logged_in_user.cart;
+      return state.cart;
     },
     getSnackbar: state => {
       return state.snackbar;
@@ -55,6 +56,9 @@ export default new Vuex.Store({
     setSnackbarText: (state, text) => {
       state.snackbar_text = text;
     },
+    removeFromCart: (state, item) => {
+      state.cart = state.cart.filter(i => i !== item);
+    }
   },
   actions: {
     getUserList: function() {
