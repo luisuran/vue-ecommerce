@@ -109,7 +109,7 @@ export default {
                     if (response.data.isAdmin) {
                         this.$router.push('/admin');
                     } else {
-                        this.$router.push('/user');
+                        this.$router.push('/home');
                     }
 
                     this.setSnackbar(true);
