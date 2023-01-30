@@ -10,7 +10,7 @@
         <v-layout justify-center>
             <v-card-title class="text-center text-uppercase">{{ watch.name }}</v-card-title>
         </v-layout>
-        <v-card-text class="py-0" min-height="200">{{ watch.description }}</v-card-text>
+        <v-card-text class="py-0" min-height="200" align="center">{{ watch.short_description }}</v-card-text>
         <v-layout justify-center>
             <v-card-subtitle class="text-subtitle-2">${{ watch.price }}</v-card-subtitle>
         </v-layout>

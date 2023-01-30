@@ -22,9 +22,9 @@
             cols="12"
             md="6"
         >
-            <h1 class="text-uppercase">{{ watch.name }}</h1>
-            <h2>{{ watch.description }}</h2>
-            <h3>${{ watch.price }}</h3>
+            <h1 class="text-uppercase mb-5">{{ watch.name }}</h1>
+            <h4>{{ watch.description }}</h4>
+            <h3 class="mt-3">${{ watch.price }}</h3>
 
             <v-btn 
                 v-if="this.$store.getters.getLoggedUser && !this.$store.getters.getLoggedUser.isAdmin" 
