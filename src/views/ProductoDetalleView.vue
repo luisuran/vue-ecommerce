@@ -4,38 +4,44 @@
         fluid
         style="min-height: 434px"
     >
-    <v-row 
-        align="center"
-        justify="center"
-    >
-        <v-col
-            cols="12"
-            md="6"
+        <v-btn @click="$router.go(-1)" color="primary" dark>
+            <v-icon dark left>
+                mdi-arrow-left
+            </v-icon>Volver
+        </v-btn>
+      
+        <v-row 
+            align="center"
+            justify="center"
         >
-            <v-img
-                :src="watch.picture"
-                aspect-ratio="1"
-                contain
-            ></v-img>
-        </v-col>
-        <v-col
-            cols="12"
-            md="6"
-        >
-            <h1 class="text-uppercase mb-5">{{ watch.name }}</h1>
-            <h4>{{ watch.description }}</h4>
-            <h3 class="mt-3">${{ watch.price }}</h3>
-
-            <v-btn 
-                v-if="this.$store.getters.getLoggedUser && !this.$store.getters.getLoggedUser.isAdmin" 
-                color="primary" 
-                class="mt-6" 
-                @click="addToCart()"
+            <v-col
+                cols="12"
+                md="6"
             >
-                Agregar al carrito
-            </v-btn>
-        </v-col>
-    </v-row>
+                <v-img
+                    :src="watch.picture"
+                    aspect-ratio="1"
+                    contain
+                ></v-img>
+            </v-col>
+            <v-col
+                cols="12"
+                md="6"
+            >
+                <h1 class="text-uppercase mb-5">{{ watch.name }}</h1>
+                <h4>{{ watch.description }}</h4>
+                <h3 class="mt-3">${{ watch.price }}</h3>
+
+                <v-btn 
+                    v-if="this.$store.getters.getLoggedUser && !this.$store.getters.getLoggedUser.isAdmin" 
+                    color="primary" 
+                    class="mt-6" 
+                    @click="addToCart()"
+                >
+                    Agregar al carrito
+                </v-btn>
+            </v-col>
+        </v-row>
     </v-container>
 </template>
 
