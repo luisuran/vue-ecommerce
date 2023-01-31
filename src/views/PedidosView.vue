@@ -15,7 +15,7 @@
             </router-link>
           </v-layout>
 
-          <listado-productos :watches="this.$store.getters.getProductList"></listado-productos>
+          <listado-pedidos></listado-pedidos>
 
         </v-col>
       </v-row>
@@ -24,12 +24,12 @@
 </template>
 
 <script>
-import ListadoProductos from '@/components/ListadoProductos.vue';
+import ListadoPedidos from '@/components/ListadoPedidos.vue';
 
 export default {
-  name: 'AdminView',
+  name: 'ClientesView',
   components: {
-    ListadoProductos,
+    ListadoPedidos,
   }
 }
 </script>
