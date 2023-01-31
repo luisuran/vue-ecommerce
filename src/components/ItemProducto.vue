@@ -69,7 +69,7 @@ export default {
             const cart = this.$store.getters.getCart;
 
             // Verifico si el producto ya está en el carrito
-            const product_cart = cart.find((product) => product.product_id === product_id);
+            const product_cart = cart.find((product) => product.id === product_id);
 
             if (product_cart) {
                 // Si ya está, sumarle 1 a la cantidad
