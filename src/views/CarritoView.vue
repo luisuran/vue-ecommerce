@@ -7,7 +7,7 @@
             <h2 class="grey--text">Carrito de compras</h2>
           </v-layout>
           <v-layout justify-center>
-            <carrito-compras :cart="cart"></carrito-compras>
+            <carrito-compras></carrito-compras>
           </v-layout>
         </v-col>
       </v-row>
@@ -16,24 +16,12 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex';
 import CarritoCompras from '@/components/CarritoCompras.vue';
 
 export default {
   name: 'CarritoView',
   components: {
     CarritoCompras,
-  },
-  data() {
-    return {
-      cart: [],
-    };
-  },
-  created() {
-    this.cart = this.$store.getters.getCart;
-  },
-  methods: {
-    ...mapActions(['getUserList', 'getProductList']),
   },
 }
 </script>

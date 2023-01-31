@@ -59,16 +59,23 @@ import axios from 'axios';
 export default {
     name: 'CarritoCompras',
 
-    props: {
-        cart: Array,
+    data() {
+        return {
+            cart: [],
+        }
+    },
+
+    created() {
+        this.cart = this.$store.getters.getCart;
     },
 
     methods: {
         ...mapMutations(['setSnackbar', 'setSnackbarColor', 'setSnackbarText', 'removeFromCart', 'emptyCart']),
         deleteFromCart(id) {
             const product = this.cart.find(product => product.id === id);
-
             this.removeFromCart(product);
+
+            this.cart = this.$store.getters.getCart;
 
             this.setSnackbar(true);
             this.setSnackbarColor('success');
@@ -83,6 +90,8 @@ export default {
             })
             .then(() => {
                 this.emptyCart();
+
+                this.cart = this.$store.getters.getCart;
 
                 this.setSnackbar(true);
                 this.setSnackbarColor('success');

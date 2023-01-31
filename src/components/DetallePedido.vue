@@ -86,7 +86,6 @@ export default {
             .then(() => {
                 axios.get('http://dev-entropia2.cvmd.com.ar/api/orders')
                 .then((response) => {
-                    // emit an event to the parent component
                     this.$emit('update-pedidos', response.data);
                 });
 
