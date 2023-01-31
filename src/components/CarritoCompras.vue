@@ -84,7 +84,7 @@ export default {
         sendOrder() {
             const user = this.$store.getters.getLoggedUser;
 
-            axios.post('http://dev-entropia2.cvmd.com.ar/api/orders', {
+            axios.post('https://dev-entropia2.cvmd.com.ar/api/orders', {
                 user_id: user.id,
                 cart: this.cart,
             })

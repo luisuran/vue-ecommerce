@@ -93,7 +93,7 @@ export default {
             this.$router.push(`/admin/product/${id}`)
         },
         deleteProduct(id) {
-            axios.delete(`http://dev-entropia2.cvmd.com.ar/api/products/${id}`)
+            axios.delete(`https://dev-entropia2.cvmd.com.ar/api/products/${id}`)
                 .then(() => {
                     this.getProductList();
                 })

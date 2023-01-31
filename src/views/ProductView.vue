@@ -23,7 +23,7 @@ export default {
 
     created() {
         const id = this.$route.params.id;
-        axios.get(`http://dev-entropia2.cvmd.com.ar/api/products/${id}`)
+        axios.get(`https://dev-entropia2.cvmd.com.ar/api/products/${id}`)
             .then(response => {
                 this.watch = response.data;
             })

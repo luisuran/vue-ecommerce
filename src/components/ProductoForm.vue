@@ -31,7 +31,7 @@ export default {
     methods: {
         ...mapActions(['getProductList', 'setSnackbar', 'setSnackbarText', 'setSnackbarColor']),
         addProduct() {
-            axios.post('http://dev-entropia2.cvmd.com.ar/api/products', {
+            axios.post('https://dev-entropia2.cvmd.com.ar/api/products', {
                 name: this.name,
                 description: this.description,
                 picture: this.picture,

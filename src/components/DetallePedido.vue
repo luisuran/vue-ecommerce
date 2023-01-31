@@ -80,11 +80,11 @@ export default {
             return user.name;
         },
         actualizarPedido() {
-            axios.put(`http://dev-entropia2.cvmd.com.ar/api/orders/${this.pedido.id}`, {
+            axios.put(`https://dev-entropia2.cvmd.com.ar/api/orders/${this.pedido.id}`, {
                 estado: this.estadoPedido,
             })
             .then(() => {
-                axios.get('http://dev-entropia2.cvmd.com.ar/api/orders')
+                axios.get('https://dev-entropia2.cvmd.com.ar/api/orders')
                 .then((response) => {
                     this.$emit('update-pedidos', response.data);
                 });

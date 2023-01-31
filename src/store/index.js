@@ -65,7 +65,7 @@ export default new Vuex.Store({
   },
   actions: {
     getUserList: function() {
-      axios.get('http://dev-entropia2.cvmd.com.ar/api/users')
+      axios.get('https://dev-entropia2.cvmd.com.ar/api/users')
       .then(response => {
         this.commit('setUserList', response.data)
       })
@@ -74,7 +74,7 @@ export default new Vuex.Store({
       });
     },
     getProductList: function() {
-      axios.get('http://dev-entropia2.cvmd.com.ar/api/products')
+      axios.get('https://dev-entropia2.cvmd.com.ar/api/products')
       .then(response => {
         this.commit('setProductList', response.data)
       })

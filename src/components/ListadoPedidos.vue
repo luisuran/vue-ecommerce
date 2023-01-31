@@ -51,7 +51,7 @@ export default {
     },
 
     created() {
-        axios.get('http://dev-entropia2.cvmd.com.ar/api/orders')
+        axios.get('https://dev-entropia2.cvmd.com.ar/api/orders')
         .then((response) => {
             this.pedidos = response.data;
         });

@@ -101,7 +101,7 @@ export default {
                 isAdmin: this.isAdmin,
             };
 
-            axios.post('http://dev-entropia2.cvmd.com.ar/api/users', newUser)
+            axios.post('https://dev-entropia2.cvmd.com.ar/api/users', newUser)
                 .then(response => {
                     this.setLoggedUser(response.data);
                     this.getUserList();

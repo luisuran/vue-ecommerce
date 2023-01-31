@@ -30,7 +30,7 @@ export default {
     methods: {
         ...mapActions(['getProductList', 'setSnackbar', 'setSnackbarText', 'setSnackbarColor']),
         editProduct() {
-            axios.put(`http://dev-entropia2.cvmd.com.ar/api/products/${this.watch.id}`, {
+            axios.put(`https://dev-entropia2.cvmd.com.ar/api/products/${this.watch.id}`, {
                 name: document.querySelector('input[name="name"]').value,
                 description: document.querySelector('input[name="description"]').value,
                 picture: document.querySelector('input[name="picture"]').value,
