@@ -58,6 +58,9 @@ export default new Vuex.Store({
     },
     removeFromCart: (state, item) => {
       state.cart = state.cart.filter(i => i !== item);
+    },
+    emptyCart: (state) => {
+      state.cart = [];
     }
   },
   actions: {

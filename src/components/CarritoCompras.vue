@@ -1,4 +1,5 @@
 <template>
+    <div class="full-width">
     <v-simple-table class="full-width">
         <template v-slot:default>
             <thead>
@@ -41,10 +42,19 @@
             </tbody>
         </template>
     </v-simple-table>
+    <v-btn 
+        class="mt-5 float-right" 
+        @click="sendOrder()"
+        v-if="cart.length > 0"
+    > 
+        Finalizar pedido
+    </v-btn>
+    </div>
 </template>
 
 <script>
 import { mapMutations } from 'vuex';
+import axios from 'axios';
 
 export default {
     name: 'CarritoCompras',
@@ -54,7 +64,7 @@ export default {
     },
 
     methods: {
-        ...mapMutations(['setSnackbar', 'setSnackbarColor', 'setSnackbarText', 'removeFromCart']),
+        ...mapMutations(['setSnackbar', 'setSnackbarColor', 'setSnackbarText', 'removeFromCart', 'emptyCart']),
         deleteFromCart(id) {
             const product = this.cart.find(product => product.id === id);
 
@@ -63,7 +73,29 @@ export default {
             this.setSnackbar(true);
             this.setSnackbarColor('success');
             this.setSnackbarText('Producto eliminado del carrito');
-        }
+        },
+        sendOrder() {
+            const user = this.$store.getters.getLoggedUser;
+
+            axios.post('http://dev-entropia2.cvmd.com.ar/api/orders', {
+                user_id: user.id,
+                cart: this.cart,
+            })
+            .then(() => {
+                this.emptyCart();
+
+                this.setSnackbar(true);
+                this.setSnackbarColor('success');
+                this.setSnackbarText('Pedido enviado con éxito');
+            })
+            .catch(error => {
+                console.log(error);
+
+                this.setSnackbar(true);
+                this.setSnackbarColor('error');
+                this.setSnackbarText('Error al enviar el pedido');
+            });
+        },
     },
 }
 </script>
